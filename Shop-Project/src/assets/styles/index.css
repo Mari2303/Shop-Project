@@ -1,0 +1,40 @@
+/* Barra de navegación fija */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #fdf8e1;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Asegura que quede encima de otros elementos */
+}
+
+/* Ajusta el espacio superior para el contenido principal */
+body {
+  margin-top: 500px; /* Ajusta este valor según la altura de tu navbar */
+}
+
+/* Estilos para el banner */
+.banner {
+  background-color: #f0e6d2;
+  padding: 10rem;
+  text-align: center;
+  margin-top: -2330px;
+}
+
+/* Otros estilos */
+.icons i {
+  margin: 0 0.5rem;
+  cursor: pointer;
+}
+
+/* Estilos para la cuadrícula de productos */
+.product-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  padding: 2rem;
+}
