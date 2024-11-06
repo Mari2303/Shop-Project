@@ -3,13 +3,13 @@
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: #fdf8e1;
+  background-color: #e9e5e0;
   padding: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  z-index: 1000; /* Asegura que quede encima de otros elementos */
+  z-index: 1000;
 }
 
 /* Ajusta el espacio superior para el contenido principal */
@@ -19,10 +19,64 @@ body {
 
 /* Estilos para el banner */
 .banner {
-  background-color: #f0e6d2;
-  padding: 10rem;
+  background: url(../../../img/pixelcutexport.jpeg) no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem;
+  color: #6b4039;
   text-align: center;
-  margin-top: -808px;
+  height: 45vh;
+  margin-top: -758px;
+}
+
+.banner-content {
+  max-width: 600px;
+}
+
+.banner-subtitle {
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 4rem;
+font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+}
+
+.banner-title {
+  font-size: 4rem;
+  font-weight: 300;
+  letter-spacing: 4px;
+  margin:2.5rem 0;
+  font-family: 'Playfair Display', serif;
+}
+
+.banner-description {
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-bottom: 2rem;
+}
+
+.banner-buttons {
+  display: flex;
+  gap: 5rem;
+  justify-content: center;
+}
+
+.banner-button {
+  background-color: #6b4039;
+  color: white;
+  padding: 0.4rem 1.5rem;
+  border: none;
+  border-radius:30px;
+  font-size: 0.7rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.banner-button:hover {
+  background-color: #714842;
 }
 
 /* Otros estilos */
@@ -37,4 +91,64 @@ body {
   gap: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   padding: 2rem;
+}
+
+/* Media Queries para responsividad */
+
+/* Para pantallas medianas */
+@media (max-width: 768px) {
+  .banner {
+    padding: 1rem 1rem;
+    height: 35vh;
+    margin-top: -758px;
+  }
+
+  .banner-title {
+    font-size: 3rem;
+  }
+
+  .banner-description {
+    font-size: 1rem;
+  }
+
+  .banner-buttons {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+/* Para pantallas pequeñas */
+@media (max-width: 480px) {
+  .navbar {
+    flex-direction: column;
+    padding: 0.5rem;
+  }
+
+  body {
+    margin-top: 463px;
+  }
+
+  .banner {
+    padding: 2rem 1rem;
+    height: 45vh;
+    margin-top: -740px;
+  }
+
+  .banner-title {
+    font-size: 2.5rem;
+  }
+
+  .banner-description {
+    font-size: 0.9rem;
+  }
+
+  .banner-button {
+    font-size: 0.9rem;
+    padding: 0.4rem 1rem;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    padding: 1rem;
+  }
 }
