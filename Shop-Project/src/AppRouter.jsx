@@ -3,8 +3,8 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ProductList from "./components/productList/productList";
 import ProductDetail from "./components/ProductDetail/ProductDetail";
-import Cart from "./components/Cart/Cart";
 import Navbar from './componentes/Navbar'; // Asegúrate de que la ruta sea correcta
+import Cart from "./components/cart";
 
 const AppRouter = () => (
   <Router>
