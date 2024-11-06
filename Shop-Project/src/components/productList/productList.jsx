@@ -1,17 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import useFetch from '../../hooks/useFetch';
 
 const ProductList = () => {
     const { data: products, loading, error } = useFetch('https://fakestoreapi.com/products');
     const [currentIndex, setCurrentIndex] = useState(0);
-    const visibleProducts = 5; // Cantidad de productos visibles a la vez
-    const productWidth = 220; // Ancho de cada producto, ajusta según sea necesario
+    const [filteredProducts, setFilteredProducts] = useState([]);
+    const [category, setCategory] = useState(null); 
 
-    if (loading) return <p>Cargando...</p>;
-    if (error) return <p>Error: {error.message}</p>;
+    const visibleProducts = 5; 
+    const productWidth = 220; 
+
+    useEffect(() => {
+        if (category) {
+            const filtered = products.filter(product => product.category === category);
+            setFilteredProducts(filtered);
+        } else {
+            setFilteredProducts(products);
+        }
+    }, [category, products]);
+
+    useEffect(() => {
+        const buttons = document.querySelectorAll('.banner-button');
+        
+        const handleFilterClick = (event) => {
+            const selectedCategory = event.target.getAttribute('data-category');
+            setCategory(selectedCategory);
+            setCurrentIndex(0); 
+        };
+
+        buttons.forEach(button => {
+            button.addEventListener('click', handleFilterClick);
+        });
+
+        return () => {
+            buttons.forEach(button => {
+                button.removeEventListener('click', handleFilterClick);
+            });
+        };
+    }, []);
 
     const handleNext = () => {
-        if (currentIndex < products.length - visibleProducts) {
+        if (currentIndex < filteredProducts.length - visibleProducts) {
             setCurrentIndex(prevIndex => prevIndex + 1);
         }
     };
@@ -22,17 +51,21 @@ const ProductList = () => {
         }
     };
 
+    if (loading) return <p>Cargando...</p>;
+    if (error) return <p>Error: {error.message}</p>;
+
     return (
         <div className="product-carousel">
+            {/* Carrusel de productos */}
             <button className="carousel-button" onClick={handlePrevious} disabled={currentIndex === 0}>
-                
+                &lt;
             </button>
             <div className="product-list-container">
                 <div
                     className="product-list"
                     style={{ transform: `translateX(-${currentIndex * productWidth}px)` }}
                 >
-                    {products.map(product => (
+                    {filteredProducts.map(product => (
                         <div key={product.id} className="product">
                             <img src={product.image} alt={product.title} />
                             <h2>{product.title}</h2>
@@ -41,14 +74,11 @@ const ProductList = () => {
                     ))}
                 </div>
             </div>
-            <button className="carousel-button" onClick={handleNext} disabled={currentIndex >= products.length - visibleProducts}>
-                
+            <button className="carousel-button" onClick={handleNext} disabled={currentIndex >= filteredProducts.length - visibleProducts}>
+                &gt;
             </button>
         </div>
     );
 };
 
 export default ProductList;
-
-                      
-
