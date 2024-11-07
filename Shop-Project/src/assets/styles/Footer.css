@@ -3,21 +3,26 @@
     background-color:#6b4039;
     color: #e9e5e0;
     padding: 40px 20px;
-    text-align: left;
-    margin-top: 300px;
+    text-align: center;
+    margin-top: 500px;
+    height: 200px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-style: italic;
     
   }
   
   .footer-container {
-    display: flex;
+    margin-top: 50px;
+    display:flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    margin-left: 600px;
    
   }
   
   .footer-column {
     flex: 1;
-    min-width: 200px;
+    min-width: 100px;
     margin-left: 100px;
   
   }
