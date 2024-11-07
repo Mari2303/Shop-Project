@@ -14,10 +14,10 @@
 
 /* Ajusta el espacio superior para el contenido principal */
 body {
-  margin-top: 500px; /* Ajusta este valor según la altura de tu navbar */
+  margin-top: 500px; 
+  height: 200px;
 }
 
-/* Estilos para el banner */
 .banner {
   background: url(../../../img/pixelcutexport.jpeg) no-repeat center center fixed;
   background-size: cover;
@@ -33,6 +33,7 @@ body {
 
 .banner-content {
   max-width: 600px;
+ 
 }
 
 .banner-subtitle {

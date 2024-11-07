@@ -2,91 +2,110 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    
+      <link rel="icon" href="/Shop-Project/img/logo.png" type="image/png">
+    
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+    <title>AVALON</title>
+   
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
     <link rel="stylesheet" href="./src/assets/styles/index.css">
     <link rel="stylesheet" href="./src/assets/styles/Footer.css">
-<link rel="stylesheet" href="./src/Hooks/ProductList.js">
-<header>
-  <nav class="navbar">
-    <a href="#" class="logo">
-      <img src="./img/logo.png" alt="." />
-    </a>
-    <a href="#">products</a>
-    <a href="#">Information</a>
-    <a href="#">Cart</a>
-    <div class="icons">
-      <i class="fa fa-search"></i>
-      <i class="fa fa-shopping-cart"></i>
+    <link rel="stylesheet" href="./src/Hooks/ProductList.js">
+
+    <header>
+      <nav class="navbar">
+        <a href="#" class="logo">
+          <img src="./img/logo.png" alt="." />
+        </a>
+        <a href="#">productos</a>
+        <a href="#">Información</a>
+        <a href="#">Carrito</a>
+        <div class="icons">
+          <i class="fa fa-search"></i>
+          <i class="fa fa-shopping-cart"></i>
+        </div>
+      </nav>
+
+      <div class="banner interactive-area" id="interactive-area">
+        <div class="banner-content">
+          <h3 class="banner-subtitle">EASY</h3>
+          <h1 class="banner-title">AVALON</h1>
+          <p class="banner-description">FÁCIL DE ENCONTRAR LO QUE NECESITAS</p>
+          <div class="banner-buttons">
+            <button class="banner-button" data-category="men's clothing">Hombre</button>
+            <button class="banner-button" data-category="women's clothing">Mujer</button>
+            <button class="banner-button" data-category="jewelery">Joyería</button>
+            <button class="banner-button" data-category="electronics">Electrodomésticos</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="products">
+      <div class="product-grid" id="product-list"></div>
+    </section>
+
+    <div class="footer">
+      <div class="footer-container">
+        <div class=".footer-column">
+          <p>&copy; 2024 Avalon</p>
+        </div>
+      </div>
     </div>
-  </nav>
 
-
-<!-- Banner debajo de la barra de navegación -->
-<div class="banner">
-  <div class="banner-content">
-    <h3 class="banner-subtitle">EASY</h3>
-    <h1 class="banner-title">AVALON</h1>
-    <p class="banner-description">FÁCIL DE ENCONTRAR LO QUE NECESITAS</p>
-    <div class="banner-buttons">
-      <button class="banner-button" data-category="men's clothing">Men</button>
-      <button class="banner-button" data-category="women's clothing">Women</button>
-      <button class="banner-button" data-category="jewelery">Jewelery</button>
-      <button class="banner-button" data-category="electronics">Electronics</button>
-
+    <div class="status">
+      <p id="status">Di "Electrodomésticos", "Mujer", "Hombre" o "Joyería" para navegar a las categorías.</p>
     </div>
-    
-  </div>
-</div>
 
+    <script>
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const SpeechSynthesis = window.speechSynthesis;  
 
-</header>
+      if (SpeechRecognition && SpeechSynthesis) {
+        const recognition = new SpeechRecognition();
+        recognition.continuous = true;  
+        recognition.lang = 'es-ES';     
+        recognition.interimResults = false; 
 
-<!-- Sección de productos -->
-<section class="products">
-  <div class="product-grid" id="product-list"></div>
-</section>
+        const interactiveArea = document.getElementById('interactive-area');
+        const statusElement = document.getElementById('status');
 
+        interactiveArea.addEventListener('click', () => {
+          recognition.start();
+          statusElement.innerText = "Escuchando... (di algo como 'Electrodomésticos', 'Mujer', 'Hombre' o 'Joyería')";
+        });
 
+        recognition.onresult = function (event) {
+          const transcript = event.results[event.resultIndex][0].transcript.trim().toLowerCase();
+          statusElement.innerText = `Reconocido: ${transcript}`;
 
+          if (transcript === "hombre") {
+            document.querySelector("[data-category='men's clothing']").click();
+            speakText('Mostrando productos de hombre.');
+          } else if (transcript === "mujer") {
+            document.querySelector("[data-category='women's clothing']").click();
+            speakText('Mostrando productos de mujer.');
+          } else if (transcript === "joyería") {
+            document.querySelector("[data-category='jewelery']").click();
+            speakText('Mostrando productos de joyería.');
+          } else if (transcript === "electrodomésticos") {
+            document.querySelector("[data-category='electronics']").click();
+            speakText('Mostrando productos de electrodomésticos.');
+          } else {
+            statusElement.innerText = "Comando no reconocido. Intenta decir 'Electrodomésticos', 'Mujer', 'Hombre' o 'Joyería'.";
+            speakText('Comando no reconocido. Intenta nuevamente.');
+          }
+        };
 
-
-<div class="footer">
-  <div class="footer-container">
-    <div class=".footer-column">
-      <h4>Acerca de nosotros</h4>
-                    <ul>
-                        <li><a> Avalon, diseñada para facilitar la búsqueda y compra<br> de productos variados, como ropa, joyería y 
-                          electrónicos.<br> En el sitio, los usuarios pueden explorar productos<br> destacados en un diseño atractivo y 
-                          organizado,<br> con acceso rápido a categorías específicas para <br>encontrar lo que necesitan fácilmente.</a></li> 
-                    </ul>
-                </div>
-                <div className="footer-column">
-                  <h4>Mas Informacion</h4>
-                  <ul>
-                      <li><a>324 3652328</a></li>
-                      <li><a></a></li>
-                  </ul>
-              </div>
-              <div className="footer-column">
-                <h4>Desarrolladores</h4>
-                <ul>
-                    <li><a>Ana Maria Blanco</a></li>
-                    <li><a>Maria Alejandra Marin</a></li>
-                    <li><a>Leidy Alejandra Hoyola</a></li>
-                    <li><a>Angelica Patricia Quintana</a></li>
-                </ul>
-            </div>
-            
-      
-    
-  </div>
-</div>
-
+        
+      } else {
+        alert("Tu navegador no soporta la API de Reconocimiento de Voz o de Síntesis de Voz.");
+      }
+    </script>
   </body>
 </html>
