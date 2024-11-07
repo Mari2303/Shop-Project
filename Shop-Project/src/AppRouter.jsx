@@ -1,20 +1,26 @@
-// Implementación de las dos APIs
-import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import ProductList from "./components/productList/productList";
-import ProductDetail from "./components/ProductDetail/ProductDetail";
-import Cart from "./components/Cart/Cart";
-import Navbar from './componentes/Navbar'; // Asegúrate de que la ruta sea correcta
+// src/AppRouter.jsx
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Home from './pages/Home';
+import Products from './pages/Products';
+import Cart from './pages/Cart';
 
 const AppRouter = () => (
-  <Router>
-    <Navbar /> {/* Mueve el Navbar fuera de las Routes para que aparezca en todas las páginas */}
-    <Routes>
-      <Route path="/" element={<ProductList />} />
-      <Route path="/product/:id" element={<ProductDetail />} />
-      <Route path="/cart" element={<Cart />} />
-    </Routes>
-  </Router>
+    <Router>
+        <div className="app-container">
+            <Navbar />
+            <div className="main-content">
+                <Switch>
+                    <Route exact path="/" component={Home} />
+                    <Route path="/products" component={Products} />
+                    <Route path="/cart" component={Cart} />
+                </Switch>
+            </div>
+            <Footer />
+        </div>
+    </Router>
 );
 
 export default AppRouter;
