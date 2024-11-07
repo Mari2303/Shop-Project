@@ -1,0 +1,288 @@
+/* Estilos principales del carrito */
+.cart-summary {
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    max-width: 1000px;
+    margin: 20px auto;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f8f8; /* Color de fondo más suave */
+}
+
+/* Título del carrito */
+.cart-summary h2 {
+    font-size: 32px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #6b4039; /* Tono marrón que se alinea con la página */
+}
+
+/* Estilo para los mensajes de carga y error */
+.loading, .error {
+    font-size: 18px;
+    text-align: center;
+    color: #f39c12; /* Color amarillo para carga */
+}
+
+.error {
+    color: #e74c3c; /* Color rojo para error */
+}
+
+/* Contenedor para los productos del carrito */
+.cart-summary-items {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Estilo de cada item en el carrito */
+.cart-summary-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #ffffff; /* Fondo blanco para los elementos */
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border: 1px solid #ddd; /* Bordes suaves */
+}
+
+.cart-summary-item:hover {
+    transform: translateY(-5px); /* Efecto hover */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Detalles del producto */
+.item-details {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.item-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.item-name {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+    max-width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Estilos de los precios y cantidades */
+.item-price,
+.item-quantity,
+.item-total {
+    font-size: 16px;
+    color: #555;
+}
+
+.item-price {
+    font-weight: bold;
+}
+
+/* Estilo del botón para eliminar productos */
+.remove-button {
+    padding: 10px 15px;
+    background-color: #e74c3c;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.remove-button:hover {
+    background-color: #c0392b;
+}
+
+.remove-button:focus {
+    outline: none;
+}
+
+/* Estilo del total del carrito */
+.cart-total {
+    margin-top: 30px;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Estilo para el mensaje de carrito vacío */
+.cart-summary p {
+    font-size: 16px;
+    color: #777;
+    text-align: center;
+}
+
+/* Estilos responsivos */
+@media (max-width: 1024px) {
+    .cart-summary {
+        padding: 25px;
+    }
+
+    .cart-summary h2 {
+        font-size: 28px;
+    }
+
+    .cart-summary-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .item-details {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+
+    .item-image {
+        width: 80px;
+        height: 80px;
+    }
+
+    .remove-button {
+        width: 100%;
+        padding: 12px 0;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .cart-summary {
+        padding: 20px;
+    }
+
+    .cart-summary h2 {
+        font-size: 24px;
+    }
+
+    .cart-summary-item {
+        flex-direction: column;
+        padding: 12px;
+    }
+
+    .item-details {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .item-name {
+        font-size: 16px;
+        max-width: 200px;
+    }
+
+    .item-price,
+    .item-quantity,
+    .item-total {
+        font-size: 14px;
+    }
+
+    .remove-button {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .cart-total {
+        font-size: 18px;
+    }
+
+    .cart-summary p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cart-summary {
+        padding: 15px;
+    }
+
+    .cart-summary h2 {
+        font-size: 22px;
+    }
+
+    .cart-summary-item {
+        padding: 10px;
+    }
+
+    .item-image {
+        width: 60px;
+        height: 60px;
+    }
+
+    .item-name {
+        font-size: 14px;
+        max-width: 180px;
+    }
+
+    .item-price,
+    .item-quantity,
+    .item-total {
+        font-size: 12px;
+    }
+
+    .remove-button {
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    .cart-total {
+        font-size: 16px;
+    }
+
+    .cart-summary p {
+        font-size: 12px;
+    }
+}
+
+/* Estilos para los controles de cantidad */
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quantity-controls button {
+    padding: 5px 10px;
+    font-size: 18px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.quantity-controls button:hover {
+    background-color: #2980b9;
+}
+
+.quantity-input {
+    width: 60px;
+    padding: 5px;
+    text-align: center;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+}
+
+.quantity-input:focus {
+    border-color: #3498db;
+}
