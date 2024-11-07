@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import useFetch from '../../hooks/useFetch';
+import ProductDetails from '../ProductDetails/ProductDetails';
 
 const ProductList = () => {
     const { data: products, loading, error } = useFetch('https://fakestoreapi.com/products');
     const [currentIndex, setCurrentIndex] = useState(0);
     const [filteredProducts, setFilteredProducts] = useState([]);
-    const [category, setCategory] = useState(null); 
+    const [category, setCategory] = useState(null);
+    const [selectedProductId, setSelectedProductId] = useState(null); 
 
     const visibleProducts = 5; 
-    const productWidth = 220; 
+    const productWidth = 220;
 
+    // Filtrado por categoría
     useEffect(() => {
         if (category) {
             const filtered = products.filter(product => product.category === category);
@@ -19,13 +22,14 @@ const ProductList = () => {
         }
     }, [category, products]);
 
+    // Event listeners para los botones de filtrado
     useEffect(() => {
         const buttons = document.querySelectorAll('.banner-button');
         
         const handleFilterClick = (event) => {
             const selectedCategory = event.target.getAttribute('data-category');
             setCategory(selectedCategory);
-            setCurrentIndex(0); 
+            setCurrentIndex(0);
         };
 
         buttons.forEach(button => {
@@ -51,14 +55,21 @@ const ProductList = () => {
         }
     };
 
+    const openModal = (productId) => {
+        setSelectedProductId(productId); 
+    };
+
+    const closeModal = () => {
+        setSelectedProductId(null); 
+    };
+
     if (loading) return <p>Cargando...</p>;
     if (error) return <p>Error: {error.message}</p>;
 
     return (
         <div className="product-carousel">
-            {/* Carrusel de productos */}
             <button className="carousel-button" onClick={handlePrevious} disabled={currentIndex === 0}>
-                &lt;
+                Anterior
             </button>
             <div className="product-list-container">
                 <div
@@ -66,7 +77,7 @@ const ProductList = () => {
                     style={{ transform: `translateX(-${currentIndex * productWidth}px)` }}
                 >
                     {filteredProducts.map(product => (
-                        <div key={product.id} className="product">
+                        <div key={product.id} className="product" onClick={() => openModal(product.id)}>
                             <img src={product.image} alt={product.title} />
                             <h2>{product.title}</h2>
                             <p>Price: ${product.price}</p>
@@ -75,8 +86,12 @@ const ProductList = () => {
                 </div>
             </div>
             <button className="carousel-button" onClick={handleNext} disabled={currentIndex >= filteredProducts.length - visibleProducts}>
-                &gt;
+                Siguiente
             </button>
+
+            {selectedProductId && (
+                <ProductDetails isOpen={!!selectedProductId} onClose={closeModal} productId={selectedProductId} />
+            )}
         </div>
     );
 };
