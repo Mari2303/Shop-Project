@@ -1,25 +1,21 @@
 // src/AppRouter.jsx
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Navbar from './components/Navbar';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Navbar from './components/productList/Navbar';
+import Home from './components/home';
+import Cart from './components/cart';
 import Footer from './components/Footer';
-import Home from './pages/Home';
-import Products from './pages/Products';
-import Cart from './pages/Cart';
+import AllProducts from './components/productList/allProducts';
 
 const AppRouter = () => (
     <Router>
-        <div className="app-container">
             <Navbar />
-            <div className="main-content">
-                <Switch>
-                    <Route exact path="/" component={Home} />
-                    <Route path="/products" component={Products} />
-                    <Route path="/cart" component={Cart} />
-                </Switch>
-            </div>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/products" element={<AllProducts />} />
+                    <Route path="/cart" element={<Cart />} />
+                </Routes>
             <Footer />
-        </div>
     </Router>
 );
 

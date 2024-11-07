@@ -1,0 +1,94 @@
+/* Estilo para el contenedor de productos */
+.responsive-product-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.responsive-product-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+}
+
+.responsive-product-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; /* Esto asegura que los elementos no se desalineen */
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: default; /* Esto asegura que el cursor no sea pointer en los elementos que no son el botón */
+    height: 400px; /* Fija una altura para que todos los productos tengan el mismo tamaño */
+    transition: transform 0.3s;
+}
+
+.responsive-product-item:hover {
+    transform: scale(1.05);
+}
+
+.product-image {
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+    margin-bottom: 10px;
+    object-fit: contain;
+}
+
+.product-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.responsive-product-item h2 {
+    font-size: 16px;
+    color: #333;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.responsive-product-item p {
+    font-size: 14px;
+    color: #666;
+    margin: 10px 0;
+}
+
+/* Estilo para el botón Comprar */
+.buy-button {
+    background-color: #6b4039; /* Color del sitio */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px; /* Asegura que el botón esté en la parte inferior del card */
+    transition: background-color 0.3s;
+}
+
+.buy-button:hover {
+    background-color: #5a332c; /* Sombra más oscura */
+}
+
+/* Media Queries para Responsividad */
+@media (min-width: 768px) {
+    .responsive-product-list {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: 1024px) {
+    .responsive-product-list {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}

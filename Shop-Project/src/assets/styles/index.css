@@ -12,11 +12,6 @@
   z-index: 1000;
 }
 
-/* Ajusta el espacio superior para el contenido principal */
-body {
-  margin-top: 500px; /* Ajusta este valor según la altura de tu navbar */
-}
-
 /* Estilos para el banner */
 .banner {
   background: url(../../../img/pixelcutexport.jpeg) no-repeat center center fixed;
@@ -28,7 +23,6 @@ body {
   color: #6b4039;
   text-align: center;
   height: 45vh;
-  margin-top: -758px;
 }
 
 .banner-content {
@@ -100,7 +94,6 @@ font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   .banner {
     padding: 1rem 1rem;
     height: 35vh;
-    margin-top: -758px;
   }
 
   .banner-title {
@@ -124,14 +117,9 @@ font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     padding: 0.5rem;
   }
 
-  body {
-    margin-top: 463px;
-  }
-
   .banner {
     padding: 2rem 1rem;
     height: 45vh;
-    margin-top: -740px;
   }
 
   .banner-title {

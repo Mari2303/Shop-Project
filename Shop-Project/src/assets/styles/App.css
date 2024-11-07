@@ -122,7 +122,6 @@ body {
     max-height: 120px; /* Limita la altura de la imagen */
     margin: 0 auto;
     display: block;
-    margin-top: -10px;
 }
 
 .product h2 {
