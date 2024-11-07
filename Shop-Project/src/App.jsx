@@ -1,6 +1,8 @@
 import React from "react";
 import ProductList from "./components/productList/productList"; 
 
+import Footer from './components/Footer';
+
 const App = () => {
     return (
         <div className="App">
@@ -11,3 +13,4 @@ const App = () => {
 };
 
 export default App;
+
